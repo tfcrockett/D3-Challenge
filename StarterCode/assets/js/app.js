@@ -60,7 +60,7 @@ d3.csv("/assets/data/data.csv").then(function(data){
         .attr('cy',function(d){
             return yScale(d.healthcare)
         })
-        .attr('r',10)
+        .attr('r',0)
         .attr('fill','#000');
     
     xAxis = d3.axisBottom(xScale);
@@ -79,7 +79,14 @@ d3.csv("/assets/data/data.csv").then(function(data){
     
     yAxisG.call(yAxis)
         .attr('transform','translate(50,0)');
- 
     
+    // global function to hold animation
+    update();   
 });
-
+function update(){
+    circles.transition()
+        .delay(function(d,i){
+            return i*10;
+        })
+        .attr('r',10);
+}
